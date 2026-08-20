@@ -295,6 +295,67 @@
   @media (prefers-reduced-motion: reduce) {
     .cta, .cta svg { transition: none; }
   }
+
+  /* ---- testimonial slide ---- */
+  .quote-mark {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 88px;
+    line-height: 1;
+    color: var(--ice-100);
+    opacity: 0.55;
+    margin: 0;
+  }
+
+  .quote {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(28px, 3.6vw, 40px);
+    line-height: 1.28;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .attribution {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--blue-900);
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 15px;
+  }
+
+  .attribution-text .name {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--white);
+  }
+
+  .attribution-text .role {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 13px;
+    color: var(--ice-100);
+    opacity: 0.75;
+  }
+
+  @media (max-width: 720px) {
+    .quote-mark { font-size: 64px; }
+  }
 </style>
 </head>
 <body>
@@ -350,6 +411,20 @@
 <section class="slide" id="slide-2" aria-label="Slide 2: Benefícios da campanha">
   <div class="dot-grid" aria-hidden="true"></div>
 
+<section class="slide" id="slide-2" aria-label="Slide 2: Depoimento de cliente">
+  <div class="dot-grid" aria-hidden="true"></div>
+
+  <div class="network" aria-hidden="true">
+    <div class="ring"></div>
+    <div class="ring ring--mid"></div>
+    <div class="ring ring--inner"></div>
+    <div class="node node--a"></div>
+    <div class="node node--b"></div>
+    <div class="node node--c"></div>
+    <div class="node node--d"></div>
+    <div class="node node--core"></div>
+  </div>
+
   <div class="content">
     <div class="brand">
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
@@ -376,6 +451,16 @@
       <div class="beneficio">
         <span class="valor">∞</span>
         <span class="desc">sem limite de indicações — quanto mais amigos, mais você ganha</span>
+      <p class="eyebrow">Depoimento</p>
+      <p class="quote-mark" aria-hidden="true">&ldquo;</p>
+      <p class="quote">Indiquei pro meu irmão numa sexta e na segunda os R$100 já tinham caído na minha conta. Mais fácil que pedir pix emprestado.</p>
+    </div>
+
+    <div class="attribution">
+      <div class="avatar" aria-hidden="true">MC</div>
+      <div class="attribution-text">
+        <p class="name">Marina Castro</p>
+        <p class="role">Cliente ArenaCash desde 2024</p>
       </div>
     </div>
   </div>
