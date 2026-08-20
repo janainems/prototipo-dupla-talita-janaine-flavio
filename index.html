@@ -247,11 +247,49 @@
     opacity: 0.55;
   }
 
+  /* ---- benefits list (slide 2) ---- */
+  .beneficios {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+  }
+
+  .beneficio {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    padding: var(--space-6);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(236, 231, 251, 0.16);
+    border-radius: var(--radius-md);
+  }
+
+  .beneficio .valor {
+    flex: none;
+    width: 96px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 28px;
+    letter-spacing: -0.01em;
+    color: var(--white);
+  }
+
+  .beneficio .desc {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ice-100);
+  }
+
   @media (max-width: 720px) {
     .content { padding: var(--space-8); max-width: 100%; }
     .network { display: none; }
     .footer { left: var(--space-6); bottom: var(--space-6); }
     .subtitle { font-size: 16px; }
+    .beneficio { gap: var(--space-4); padding: var(--space-4); }
+    .beneficio .valor { width: 72px; font-size: 22px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -304,6 +342,46 @@
 
   <div class="footer">
     <span class="index">01</span>
+    <span class="dash"></span>
+    <span class="legal">ArenaCash — Fintech fictícia para fins de treinamento</span>
+  </div>
+</section>
+
+<section class="slide" id="slide-2" aria-label="Slide 2: Benefícios da campanha">
+  <div class="dot-grid" aria-hidden="true"></div>
+
+  <div class="content">
+    <div class="brand">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+        <circle cx="11" cy="14" r="9" fill="#FFFFFF" fill-opacity="0.16"/>
+        <circle cx="18" cy="14" r="9" fill="#FFFFFF" fill-opacity="0.9"/>
+      </svg>
+      <span>arenacash</span>
+    </div>
+
+    <div>
+      <p class="eyebrow">Benefícios</p>
+      <h1 class="headline">3 motivos pra <em>indicar</em></h1>
+    </div>
+
+    <div class="beneficios">
+      <div class="beneficio">
+        <span class="valor">R$ 50</span>
+        <span class="desc">pro amigo indicado, assim que ele abrir a conta</span>
+      </div>
+      <div class="beneficio">
+        <span class="valor">R$ 50</span>
+        <span class="desc">pra quem indicou, por cada indicação que virar conta</span>
+      </div>
+      <div class="beneficio">
+        <span class="valor">∞</span>
+        <span class="desc">sem limite de indicações — quanto mais amigos, mais você ganha</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="index">02</span>
     <span class="dash"></span>
     <span class="legal">ArenaCash — Fintech fictícia para fins de treinamento</span>
   </div>
