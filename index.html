@@ -247,48 +247,114 @@
     opacity: 0.55;
   }
 
+  /* ---- benefits list (slide 2) ---- */
+  .beneficios {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+  }
+
+  .beneficio {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    padding: var(--space-6);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(236, 231, 251, 0.16);
+    border-radius: var(--radius-md);
+  }
+
+  .beneficio .valor {
+    flex: none;
+    width: 96px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 28px;
+    letter-spacing: -0.01em;
+    color: var(--white);
+  }
+
+  .beneficio .desc {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ice-100);
+  }
+
   @media (max-width: 720px) {
     .content { padding: var(--space-8); max-width: 100%; }
     .network { display: none; }
     .footer { left: var(--space-6); bottom: var(--space-6); }
     .subtitle { font-size: 16px; }
+    .beneficio { gap: var(--space-4); padding: var(--space-4); }
+    .beneficio .valor { width: 72px; font-size: 22px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .cta, .cta svg { transition: none; }
   }
 
-  /* ---- FAQ slide ---- */
-  .faq-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
-  }
-
-  .faq-item {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
-
-  .faq-question {
+  /* ---- testimonial slide ---- */
+  .quote-mark {
     font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 1.3;
+    font-weight: 900;
+    font-size: 88px;
+    line-height: 1;
+    color: var(--ice-100);
+    opacity: 0.55;
+    margin: 0;
+  }
+
+  .quote {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(28px, 3.6vw, 40px);
+    line-height: 1.28;
+    letter-spacing: -0.01em;
     color: var(--white);
     margin: 0;
+    text-wrap: balance;
   }
 
-  .faq-answer {
+  .attribution {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--blue-900);
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 15px;
+  }
+
+  .attribution-text .name {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--white);
+  }
+
+  .attribution-text .role {
     font-family: var(--font-body);
     font-weight: 400;
-    font-size: 15px;
-    line-height: 1.6;
+    font-size: 13px;
     color: var(--ice-100);
-    opacity: 0.85;
-    margin: 0;
-    max-width: 46ch;
+    opacity: 0.75;
+  }
+
+  @media (max-width: 720px) {
+    .quote-mark { font-size: 64px; }
   }
 </style>
 </head>
@@ -342,7 +408,10 @@
   </div>
 </section>
 
-<section class="slide" id="slide-2" aria-label="Slide 2: Perguntas frequentes">
+<section class="slide" id="slide-2" aria-label="Slide 2: Benefícios da campanha">
+  <div class="dot-grid" aria-hidden="true"></div>
+
+<section class="slide" id="slide-2" aria-label="Slide 2: Depoimento de cliente">
   <div class="dot-grid" aria-hidden="true"></div>
 
   <div class="network" aria-hidden="true">
@@ -366,22 +435,32 @@
     </div>
 
     <div>
-      <p class="eyebrow">Perguntas frequentes</p>
-      <h1 class="headline">Tire suas dúvidas sobre a <em>campanha</em></h1>
+      <p class="eyebrow">Benefícios</p>
+      <h1 class="headline">3 motivos pra <em>indicar</em></h1>
     </div>
 
-    <div class="faq-list">
-      <div class="faq-item">
-        <p class="faq-question">Até quando vale a promoção?</p>
-        <p class="faq-answer">A campanha é válida até 30 de setembro de 2026 ou enquanto durarem as vagas promocionais.</p>
+    <div class="beneficios">
+      <div class="beneficio">
+        <span class="valor">R$ 50</span>
+        <span class="desc">pro amigo indicado, assim que ele abrir a conta</span>
       </div>
-      <div class="faq-item">
-        <p class="faq-question">Existe limite de indicações?</p>
-        <p class="faq-answer">Não! Você pode indicar quantos amigos quiser e receber R$ 100 por cada indicação validada.</p>
+      <div class="beneficio">
+        <span class="valor">R$ 50</span>
+        <span class="desc">pra quem indicou, por cada indicação que virar conta</span>
       </div>
-      <div class="faq-item">
-        <p class="faq-question">Quando o bônus cai na conta?</p>
-        <p class="faq-answer">Assim que seu amigo completar o cadastro e investir R$ 100, o valor é liberado em até 48 horas para os dois.</p>
+      <div class="beneficio">
+        <span class="valor">∞</span>
+        <span class="desc">sem limite de indicações — quanto mais amigos, mais você ganha</span>
+      <p class="eyebrow">Depoimento</p>
+      <p class="quote-mark" aria-hidden="true">&ldquo;</p>
+      <p class="quote">Indiquei pro meu irmão numa sexta e na segunda os R$100 já tinham caído na minha conta. Mais fácil que pedir pix emprestado.</p>
+    </div>
+
+    <div class="attribution">
+      <div class="avatar" aria-hidden="true">MC</div>
+      <div class="attribution-text">
+        <p class="name">Marina Castro</p>
+        <p class="role">Cliente ArenaCash desde 2024</p>
       </div>
     </div>
   </div>
