@@ -15,6 +15,8 @@
     --blue-500: #A78BFA;
     --ice-100: #ECE7FB;
     --white: #FFFFFF;
+    --whatsapp-red: #E11D2A;
+    --whatsapp-red-dark: #B7141F;
 
     --font-display: 'Archivo', system-ui, -apple-system, sans-serif;
     --font-body: 'Inter', system-ui, -apple-system, sans-serif;
@@ -283,17 +285,37 @@
     color: var(--ice-100);
   }
 
-  @media (max-width: 720px) {
-    .content { padding: var(--space-8); max-width: 100%; }
-    .network { display: none; }
-    .footer { left: var(--space-6); bottom: var(--space-6); }
-    .subtitle { font-size: 16px; }
-    .beneficio { gap: var(--space-4); padding: var(--space-4); }
-    .beneficio .valor { width: 72px; font-size: 22px; }
+  /* ---- FAQ slide ---- */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .cta, .cta svg { transition: none; }
+  .faq-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .faq-question {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.3;
+    color: var(--white);
+    margin: 0;
+  }
+
+  .faq-answer {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ice-100);
+    opacity: 0.85;
+    margin: 0;
+    max-width: 46ch;
   }
 
   /* ---- testimonial slide ---- */
@@ -343,6 +365,7 @@
     font-weight: 600;
     font-size: 15px;
     color: var(--white);
+    margin: 0;
   }
 
   .attribution-text .role {
@@ -351,10 +374,57 @@
     font-size: 13px;
     color: var(--ice-100);
     opacity: 0.75;
+    margin: 0;
   }
 
+  /* ---- floating WhatsApp button (custom red, not brand green) ---- */
+  .whatsapp-btn {
+    position: fixed;
+    right: var(--space-8);
+    bottom: var(--space-8);
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--whatsapp-red);
+    box-shadow: 0 8px 24px rgba(225, 29, 42, 0.45);
+    text-decoration: none;
+    transition: transform 150ms var(--ease-standard), box-shadow 150ms var(--ease-standard), background 150ms var(--ease-standard);
+  }
+
+  .whatsapp-btn:hover {
+    background: var(--whatsapp-red-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(225, 29, 42, 0.55);
+  }
+
+  .whatsapp-btn:active {
+    transform: translateY(0);
+  }
+
+  .whatsapp-btn:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 3px;
+  }
+
+  .whatsapp-btn svg { display: block; }
+
   @media (max-width: 720px) {
+    .content { padding: var(--space-8); max-width: 100%; }
+    .network { display: none; }
+    .footer { left: var(--space-6); bottom: var(--space-6); }
+    .subtitle { font-size: 16px; }
+    .beneficio { gap: var(--space-4); padding: var(--space-4); }
+    .beneficio .valor { width: 72px; font-size: 22px; }
     .quote-mark { font-size: 64px; }
+    .whatsapp-btn { right: var(--space-4); bottom: var(--space-4); width: 48px; height: 48px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta, .cta svg, .whatsapp-btn { transition: none; }
   }
 </style>
 </head>
@@ -411,20 +481,6 @@
 <section class="slide" id="slide-2" aria-label="Slide 2: Benefícios da campanha">
   <div class="dot-grid" aria-hidden="true"></div>
 
-<section class="slide" id="slide-2" aria-label="Slide 2: Depoimento de cliente">
-  <div class="dot-grid" aria-hidden="true"></div>
-
-  <div class="network" aria-hidden="true">
-    <div class="ring"></div>
-    <div class="ring ring--mid"></div>
-    <div class="ring ring--inner"></div>
-    <div class="node node--a"></div>
-    <div class="node node--b"></div>
-    <div class="node node--c"></div>
-    <div class="node node--d"></div>
-    <div class="node node--core"></div>
-  </div>
-
   <div class="content">
     <div class="brand">
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
@@ -451,6 +507,92 @@
       <div class="beneficio">
         <span class="valor">∞</span>
         <span class="desc">sem limite de indicações — quanto mais amigos, mais você ganha</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="index">02</span>
+    <span class="dash"></span>
+    <span class="legal">ArenaCash — Fintech fictícia para fins de treinamento</span>
+  </div>
+</section>
+
+<section class="slide" id="slide-3" aria-label="Slide 3: Perguntas frequentes">
+  <div class="dot-grid" aria-hidden="true"></div>
+
+  <div class="network" aria-hidden="true">
+    <div class="ring"></div>
+    <div class="ring ring--mid"></div>
+    <div class="ring ring--inner"></div>
+    <div class="node node--a"></div>
+    <div class="node node--b"></div>
+    <div class="node node--c"></div>
+    <div class="node node--d"></div>
+    <div class="node node--core"></div>
+  </div>
+
+  <div class="content">
+    <div class="brand">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+        <circle cx="11" cy="14" r="9" fill="#FFFFFF" fill-opacity="0.16"/>
+        <circle cx="18" cy="14" r="9" fill="#FFFFFF" fill-opacity="0.9"/>
+      </svg>
+      <span>arenacash</span>
+    </div>
+
+    <div>
+      <p class="eyebrow">Perguntas frequentes</p>
+      <h1 class="headline">Tire suas dúvidas sobre a <em>campanha</em></h1>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <p class="faq-question">Até quando vale a promoção?</p>
+        <p class="faq-answer">A campanha é válida até 30 de setembro de 2026 ou enquanto durarem as vagas promocionais.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-question">Existe limite de indicações?</p>
+        <p class="faq-answer">Não! Você pode indicar quantos amigos quiser e receber R$ 100 por cada indicação validada.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-question">Quando o bônus cai na conta?</p>
+        <p class="faq-answer">Assim que seu amigo completar o cadastro e investir R$ 100, o valor é liberado em até 48 horas para os dois.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="index">03</span>
+    <span class="dash"></span>
+    <span class="legal">ArenaCash — Fintech fictícia para fins de treinamento</span>
+  </div>
+</section>
+
+<section class="slide" id="slide-4" aria-label="Slide 4: Depoimento de cliente">
+  <div class="dot-grid" aria-hidden="true"></div>
+
+  <div class="network" aria-hidden="true">
+    <div class="ring"></div>
+    <div class="ring ring--mid"></div>
+    <div class="ring ring--inner"></div>
+    <div class="node node--a"></div>
+    <div class="node node--b"></div>
+    <div class="node node--c"></div>
+    <div class="node node--d"></div>
+    <div class="node node--core"></div>
+  </div>
+
+  <div class="content">
+    <div class="brand">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+        <circle cx="11" cy="14" r="9" fill="#FFFFFF" fill-opacity="0.16"/>
+        <circle cx="18" cy="14" r="9" fill="#FFFFFF" fill-opacity="0.9"/>
+      </svg>
+      <span>arenacash</span>
+    </div>
+
+    <div>
       <p class="eyebrow">Depoimento</p>
       <p class="quote-mark" aria-hidden="true">&ldquo;</p>
       <p class="quote">Indiquei pro meu irmão numa sexta e na segunda os R$100 já tinham caído na minha conta. Mais fácil que pedir pix emprestado.</p>
@@ -466,11 +608,17 @@
   </div>
 
   <div class="footer">
-    <span class="index">02</span>
+    <span class="index">04</span>
     <span class="dash"></span>
     <span class="legal">ArenaCash — Fintech fictícia para fins de treinamento</span>
   </div>
 </section>
+
+<a class="whatsapp-btn" href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20campanha%20Indique%20um%20amigo%20da%20ArenaCash." target="_blank" rel="noopener" aria-label="Enviar mensagem no WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.61 1.44 5.15L2 22l5.09-1.53a9.87 9.87 0 0 0 4.95 1.32h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm5.6 14.15c-.24.66-1.18 1.24-1.87 1.36-.5.09-1.16.16-3.38-.72-2.85-1.13-4.68-4.02-4.82-4.2-.14-.19-1.16-1.54-1.16-2.93 0-1.4.73-2.08 1-2.37.24-.26.53-.32.71-.32.18 0 .35 0 .5.01.16.01.38-.06.6.45.24.55.79 1.94.86 2.08.07.14.12.3.02.49-.1.19-.15.3-.29.46-.15.17-.31.37-.44.5-.15.15-.3.31-.13.6.17.3.75 1.24 1.62 2.01 1.11.99 2.05 1.3 2.34 1.44.3.15.47.13.64-.08.18-.21.75-.87.95-1.17.19-.3.39-.24.65-.15.27.1 1.71.81 2 .96.3.15.49.22.56.34.08.13.08.72-.16 1.38Z" fill="#FFFFFF"/>
+  </svg>
+</a>
 
 </body>
 </html>
