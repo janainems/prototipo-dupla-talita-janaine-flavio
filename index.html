@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ArenaCash — Indique um amigo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy-950: #081F12;
+    --blue-900: #14532D;
+    --blue-700: #7C3AED;
+    --blue-500: #A78BFA;
+    --ice-100: #ECE7FB;
+    --white: #FFFFFF;
+
+    --font-display: 'Archivo', system-ui, -apple-system, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-12: 48px;
+    --space-16: 64px;
+
+    --radius-md: 10px;
+    --ease-standard: cubic-bezier(0.2, 0.6, 0.2, 1);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: var(--navy-950);
+  }
+
+  body {
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .slide {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 900px 700px at 78% 20%, rgba(167, 139, 250, 0.35), transparent 60%),
+      radial-gradient(ellipse 700px 600px at 85% 80%, rgba(124, 58, 237, 0.30), transparent 65%),
+      linear-gradient(160deg, var(--navy-950) 0%, var(--blue-900) 62%, var(--blue-700) 100%);
+    display: flex;
+    align-items: center;
+  }
+
+  /* ---- decorative dot grid ---- */
+  .dot-grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(236, 231, 251, 0.16) 1.5px, transparent 1.5px);
+    background-size: 28px 28px;
+    -webkit-mask-image: radial-gradient(ellipse 60% 70% at 82% 50%, black 0%, transparent 72%);
+            mask-image: radial-gradient(ellipse 60% 70% at 82% 50%, black 0%, transparent 72%);
+    pointer-events: none;
+  }
+
+  /* ---- referral network motif: concentric rings with connection nodes ---- */
+  .network {
+    position: absolute;
+    right: -6%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(46vw, 620px);
+    aspect-ratio: 1;
+    pointer-events: none;
+  }
+
+  .ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(236, 231, 251, 0.14);
+  }
+
+  .ring--mid { inset: 14%; border-color: rgba(236, 231, 251, 0.20); }
+  .ring--inner { inset: 30%; border-color: rgba(236, 231, 251, 0.28); }
+
+  .node {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--ice-100);
+    box-shadow: 0 0 18px 2px rgba(236, 231, 251, 0.55);
+  }
+
+  .node--a { top: 6%; left: 46%; }
+  .node--b { top: 44%; left: 96%; }
+  .node--c { top: 82%; left: 60%; }
+  .node--d { top: 60%; left: 8%; width: 7px; height: 7px; opacity: 0.75; }
+
+  .node--core {
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    background: var(--white);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 24px 4px rgba(255, 255, 255, 0.6);
+  }
+
+  /* ---- content ---- */
+  .content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    max-width: 620px;
+    padding: var(--space-16) var(--space-16);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .brand svg { display: block; }
+
+  .brand span {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    color: var(--white);
+  }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ice-100);
+    opacity: 0.85;
+  }
+
+  .headline {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(40px, 6.2vw, 80px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .headline em {
+    font-style: normal;
+    color: var(--ice-100);
+  }
+
+  .subtitle {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--ice-100);
+    max-width: 46ch;
+    margin: 0;
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    width: fit-content;
+    padding: 14px 24px;
+    background: var(--white);
+    color: var(--blue-900);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition: background 150ms var(--ease-standard), transform 150ms var(--ease-standard), gap 150ms var(--ease-standard);
+  }
+
+  .cta:hover {
+    background: var(--ice-100);
+    gap: var(--space-3);
+  }
+
+  .cta:active {
+    transform: translateY(1px);
+  }
+
+  .cta:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 3px;
+  }
+
+  .cta svg {
+    transition: transform 150ms var(--ease-standard);
+  }
+
+  .cta:hover svg {
+    transform: translateX(2px);
+  }
+
+  .footer {
+    position: absolute;
+    left: var(--space-16);
+    bottom: var(--space-8);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .footer .index {
+    font-family: var(--font-body);
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--white);
+    opacity: 0.9;
+  }
+
+  .footer .dash {
+    width: 24px;
+    height: 1px;
+    background: rgba(236, 231, 251, 0.35);
+  }
+
+  .footer .legal {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--ice-100);
+    opacity: 0.55;
+  }
+
+  @media (max-width: 720px) {
+    .content { padding: var(--space-8); max-width: 100%; }
+    .network { display: none; }
+    .footer { left: var(--space-6); bottom: var(--space-6); }
+    .subtitle { font-size: 16px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta, .cta svg { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<section class="slide" id="slide-1" aria-label="Slide 1: Campanha Indique um amigo">
+  <div class="dot-grid" aria-hidden="true"></div>
+
+  <div class="network" aria-hidden="true">
+    <div class="ring"></div>
+    <div class="ring ring--mid"></div>
+    <div class="ring ring--inner"></div>
+    <div class="node node--a"></div>
+    <div class="node node--b"></div>
+    <div class="node node--c"></div>
+    <div class="node node--d"></div>
+    <div class="node node--core"></div>
+  </div>
+
+  <div class="content">
+    <div class="brand">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+        <circle cx="11" cy="14" r="9" fill="#FFFFFF" fill-opacity="0.16"/>
+        <circle cx="18" cy="14" r="9" fill="#FFFFFF" fill-opacity="0.9"/>
+      </svg>
+      <span>arenacash</span>
+    </div>
+
+    <div>
+      <p class="eyebrow">Programa de indicação</p>
+      <h1 class="headline">Indique um amigo e ganhe <em>R$100</em></h1>
+    </div>
+
+    <p class="subtitle">
+      Manda seu link, seu amigo abre a conta e investe pelo menos R$ 100.
+      Os R$ 100 caem pra você e pra ele — sem pegadinha.
+    </p>
+
+    <a class="cta" href="#saiba-mais">
+      Saiba mais
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3.5 8H12.5M12.5 8L8.5 4M12.5 8L8.5 12" stroke="#14532D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+
+  <div class="footer">
+    <span class="index">01</span>
+    <span class="dash"></span>
+    <span class="legal">ArenaCash — Fintech fictícia para fins de treinamento</span>
+  </div>
+</section>
+
+</body>
+</html>
