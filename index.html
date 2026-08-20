@@ -258,65 +258,37 @@
     .cta, .cta svg { transition: none; }
   }
 
-  /* ---- testimonial slide ---- */
-  .quote-mark {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: 88px;
-    line-height: 1;
-    color: var(--ice-100);
-    opacity: 0.55;
-    margin: 0;
+  /* ---- FAQ slide ---- */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
   }
 
-  .quote {
+  .faq-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .faq-question {
     font-family: var(--font-display);
-    font-weight: 800;
-    font-size: clamp(28px, 3.6vw, 40px);
-    line-height: 1.28;
-    letter-spacing: -0.01em;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.3;
     color: var(--white);
     margin: 0;
-    text-wrap: balance;
   }
 
-  .attribution {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-  }
-
-  .avatar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--white);
-    color: var(--blue-900);
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 15px;
-  }
-
-  .attribution-text .name {
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 15px;
-    color: var(--white);
-  }
-
-  .attribution-text .role {
+  .faq-answer {
     font-family: var(--font-body);
     font-weight: 400;
-    font-size: 13px;
+    font-size: 15px;
+    line-height: 1.6;
     color: var(--ice-100);
-    opacity: 0.75;
-  }
-
-  @media (max-width: 720px) {
-    .quote-mark { font-size: 64px; }
+    opacity: 0.85;
+    margin: 0;
+    max-width: 46ch;
   }
 </style>
 </head>
@@ -370,7 +342,7 @@
   </div>
 </section>
 
-<section class="slide" id="slide-2" aria-label="Slide 2: Depoimento de cliente">
+<section class="slide" id="slide-2" aria-label="Slide 2: Perguntas frequentes">
   <div class="dot-grid" aria-hidden="true"></div>
 
   <div class="network" aria-hidden="true">
@@ -394,16 +366,22 @@
     </div>
 
     <div>
-      <p class="eyebrow">Depoimento</p>
-      <p class="quote-mark" aria-hidden="true">&ldquo;</p>
-      <p class="quote">Indiquei pro meu irmão numa sexta e na segunda os R$100 já tinham caído na minha conta. Mais fácil que pedir pix emprestado.</p>
+      <p class="eyebrow">Perguntas frequentes</p>
+      <h1 class="headline">Tire suas dúvidas sobre a <em>campanha</em></h1>
     </div>
 
-    <div class="attribution">
-      <div class="avatar" aria-hidden="true">MC</div>
-      <div class="attribution-text">
-        <p class="name">Marina Castro</p>
-        <p class="role">Cliente ArenaCash desde 2024</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <p class="faq-question">Até quando vale a promoção?</p>
+        <p class="faq-answer">A campanha é válida até 30 de setembro de 2026 ou enquanto durarem as vagas promocionais.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-question">Existe limite de indicações?</p>
+        <p class="faq-answer">Não! Você pode indicar quantos amigos quiser e receber R$ 100 por cada indicação validada.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-question">Quando o bônus cai na conta?</p>
+        <p class="faq-answer">Assim que seu amigo completar o cadastro e investir R$ 100, o valor é liberado em até 48 horas para os dois.</p>
       </div>
     </div>
   </div>
