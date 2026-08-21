@@ -425,6 +425,58 @@
 
   .whatsapp-btn svg { display: block; }
 
+  /* ---- countdown (slide 1) ---- */
+  .countdown {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .countdown-label {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--pa-gray-600);
+    margin: 0;
+  }
+
+  .countdown-units {
+    display: flex;
+    gap: var(--space-3);
+  }
+
+  .countdown-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 64px;
+    padding: var(--space-3) var(--space-4);
+    background: var(--pa-gray-50);
+    border: 1px solid var(--pa-gray-200);
+    border-radius: var(--radius-md);
+  }
+
+  .countdown-value {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--pa-red);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .countdown-unit-label {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--pa-gray-500);
+  }
+
   @media (max-width: 720px) {
     .content { padding: var(--space-8); max-width: 100%; }
     .network { display: none; }
@@ -434,6 +486,8 @@
     .beneficio .valor { width: 72px; font-size: 22px; }
     .quote-mark { font-size: 64px; }
     .whatsapp-btn { right: var(--space-4); bottom: var(--space-4); width: 48px; height: 48px; }
+    .countdown-unit { min-width: 52px; padding: var(--space-2) var(--space-3); }
+    .countdown-value { font-size: 22px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -475,6 +529,24 @@
       Manda seu link, seu amigo abre a conta e investe pelo menos R$ 100.
       Os R$ 100 caem pra você e pra ele — sem pegadinha.
     </p>
+
+    <div class="countdown" role="timer" aria-live="polite" aria-label="Tempo restante da promoção">
+      <p class="countdown-label">A promoção acaba hoje à meia-noite</p>
+      <div class="countdown-units">
+        <div class="countdown-unit">
+          <span class="countdown-value" id="countdown-horas">00</span>
+          <span class="countdown-unit-label">Horas</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-value" id="countdown-minutos">00</span>
+          <span class="countdown-unit-label">Min</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-value" id="countdown-segundos">00</span>
+          <span class="countdown-unit-label">Seg</span>
+        </div>
+      </div>
+    </div>
 
     <a class="cta" href="#saiba-mais">
       Saiba mais
@@ -632,6 +704,51 @@
     <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.61 1.44 5.15L2 22l5.09-1.53a9.87 9.87 0 0 0 4.95 1.32h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm5.6 14.15c-.24.66-1.18 1.24-1.87 1.36-.5.09-1.16.16-3.38-.72-2.85-1.13-4.68-4.02-4.82-4.2-.14-.19-1.16-1.54-1.16-2.93 0-1.4.73-2.08 1-2.37.24-.26.53-.32.71-.32.18 0 .35 0 .5.01.16.01.38-.06.6.45.24.55.79 1.94.86 2.08.07.14.12.3.02.49-.1.19-.15.3-.29.46-.15.17-.31.37-.44.5-.15.15-.3.31-.13.6.17.3.75 1.24 1.62 2.01 1.11.99 2.05 1.3 2.34 1.44.3.15.47.13.64-.08.18-.21.75-.87.95-1.17.19-.3.39-.24.65-.15.27.1 1.71.81 2 .96.3.15.49.22.56.34.08.13.08.72-.16 1.38Z" fill="#FFFFFF"/>
   </svg>
 </a>
+
+<script>
+  (function () {
+    var elHoras = document.getElementById('countdown-horas');
+    var elMinutos = document.getElementById('countdown-minutos');
+    var elSegundos = document.getElementById('countdown-segundos');
+
+    function pad(n) {
+      return String(n).padStart(2, '0');
+    }
+
+    // Promoção encerra hoje à meia-noite (00:00 do próximo dia).
+    function getFimDaPromocao() {
+      var agora = new Date();
+      return new Date(agora.getFullYear(), agora.getMonth(), agora.getDate() + 1, 0, 0, 0, 0);
+    }
+
+    var fimDaPromocao = getFimDaPromocao();
+    var intervalId = null;
+
+    function atualizarContador() {
+      var restante = fimDaPromocao.getTime() - Date.now();
+
+      if (restante <= 0) {
+        elHoras.textContent = '00';
+        elMinutos.textContent = '00';
+        elSegundos.textContent = '00';
+        if (intervalId) clearInterval(intervalId);
+        return;
+      }
+
+      var totalSegundos = Math.floor(restante / 1000);
+      var horas = Math.floor(totalSegundos / 3600);
+      var minutos = Math.floor((totalSegundos % 3600) / 60);
+      var segundos = totalSegundos % 60;
+
+      elHoras.textContent = pad(horas);
+      elMinutos.textContent = pad(minutos);
+      elSegundos.textContent = pad(segundos);
+    }
+
+    atualizarContador();
+    intervalId = setInterval(atualizarContador, 1000);
+  })();
+</script>
 
 </body>
 </html>
